@@ -17,21 +17,21 @@ def getLocal():
     city = datas['result']['ad_info']['city']
     return province,city
 
-def getWeather(province=getLocal()[0],city=getLocal()[1]):
+def getWeather(forecastType,province=getLocal()[0],city=getLocal()[1]):
     provinceURL = urllib.parse.quote(province)
     cityURL = urllib.parse.quote(city)
     header = {
         "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
     }
-    url = "https://wis.qq.com/weather/common?source=pc&weather_type=observe%7Cforecast_1h%7Cforecast_24h%7Cindex%7Calarm%7Climit%7Ctips%7Crise&province={0}&city={1}&county=&callback=jQuery111303041900138614775_1554708929049&_=1554708929050".format(provinceURL  , cityURL)    
+    url = "https://wis.qq.com/weather/common?source=pc&weather_type={0}&province={1}&city={2}&county=&callback=jQuery111303041900138614775_1554708929049&_=1554708929050".format(forecastType,provinceURL  , cityURL)    
     web_data = requests.get(url, headers=header)
     web_data.encoding = 'utf-8'
     startPos = web_data.text.index('{')
     datas = json.loads(web_data.text[startPos:-1])
-    result_data = datas['data']
-    print(datas['data']['forecast_1h'])
+    result_data = datas['data'][forecastType]
     return result_data
 
 if __name__ == "__main__":
     province,city = getLocal()
-    getWeather(province,city)
+    d = getWeather('forecast_24h',province,city)
+    print(d)
