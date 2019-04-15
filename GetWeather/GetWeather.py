@@ -1,3 +1,3 @@
-import test_1
+import test_TencentWeather
 
-test_1.test_1()
+test_TencentWeather.test_1()
