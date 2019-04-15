@@ -30,8 +30,3 @@ def getWeather(forecastType,province=getLocal()[0],city=getLocal()[1]):
     datas = json.loads(web_data.text[startPos:-1])
     result_data = datas['data'][forecastType]
     return result_data
-
-if __name__ == "__main__":
-    province,city = getLocal()
-    d = getWeather('forecast_24h',province,city)
-    print(d)
