@@ -1,7 +1,5 @@
 import requests
 import urllib
-import pandas
-import datetime
 import json
 
 def getLocal():
