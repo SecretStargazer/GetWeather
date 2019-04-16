@@ -26,6 +26,7 @@ def getWeather(forecastType,province=getLocal()[0],city=getLocal()[1]):
     web_data = requests.get(url, headers=header)
     web_data.encoding = 'utf-8'
     startPos = web_data.text.index('{')
-    datas = json.loads(web_data.text[startPos:-1])
+    endPos = web_data.text.rindex('}') + 1
+    datas = json.loads(web_data.text[startPos:endPos])
     result_data = datas['data'][forecastType]
     return result_data
