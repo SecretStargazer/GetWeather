@@ -10,7 +10,8 @@ def getLocal():
     web_data = requests.get(url, headers=header)
     web_data.encoding = 'utf-8'
     startPos = web_data.text.index('{')
-    datas = json.loads(web_data.text[startPos:-1])
+    endPos = web_data.text.rindex('}') + 1
+    datas = json.loads(web_data.text[startPos:endPos])
     province = datas['result']['ad_info']['province']
     city = datas['result']['ad_info']['city']
     return province,city
