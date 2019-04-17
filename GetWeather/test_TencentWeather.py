@@ -10,6 +10,3 @@ def test_24h():
     province,city = TencentWeather.getLocal()
     data = TencentWeather.getWeather('forecast_24h',province,city)
     PrintResult.printTencentWeatherForcast24H(data)
-
-
-
