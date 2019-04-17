@@ -25,6 +25,9 @@
     <Compile Include="GetWeatherFormTencentWeather.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PrintResult.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="test_TencentWeather.py">
       <SubType>Code</SubType>
     </Compile>
